@@ -1,0 +1,25 @@
+import { Request, Response, NextFunction } from 'express';
+import { AnyZodObject, ZodError } from 'zod/v4';
+
+export const validate = (schema: AnyZodObject) => 
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      await schema.parseAsync({
+        body: req.body,
+        query: req.query,
+        params: req.params,
+      });
+      return next();
+    } catch (error) {
+      if (error instanceof ZodError) {
+        return res.status(400).json({
+          status: 'fail',
+          errors: error.errors.map(err => ({
+            path: err.path[1],
+            message: err.message
+          }))
+        });
+      }
+      return res.status(500).json({ message: "Internal Server Error" });
+    }
+  };
