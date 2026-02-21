@@ -22,7 +22,7 @@ Express.js backend with JWT authentication and refresh token mechanism.
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd backend
+cd express-jwt-refresh-token
 ```
 
 2. Install dependencies:
