@@ -4,7 +4,7 @@ Express.js backend with JWT authentication and refresh token mechanism.
 
 ## Tech Stack
 
-- **Runtime**: Node.js
+- **Runtime**: Bun
 - **Framework**: Express.js
 - **Database**: MariaDB (via Prisma ORM)
 - **Authentication**: JWT (Access + Refresh tokens)
@@ -13,9 +13,8 @@ Express.js backend with JWT authentication and refresh token mechanism.
 
 ## Prerequisites
 
-- Node.js (v18+)
+- Bun (v1.0+)
 - MariaDB (running on localhost:3306)
-- npm
 
 ## Setup
 
@@ -27,7 +26,7 @@ cd express-jwt-refresh-token
 
 2. Install dependencies:
 ```bash
-npm install
+bun install
 ```
 
 3. Configure environment variables:
@@ -53,20 +52,20 @@ CREATE DATABASE your_database_name;
 
 6. Run Prisma migrations:
 ```bash
-npx prisma migrate dev
+bunx prisma migrate dev
 ```
 
 ## Running
 
 Development mode (with hot reload):
 ```bash
-npm run dev
+bun run dev
 ```
 
 Production build:
 ```bash
-npm run build
-npm start
+bun run build
+bun start
 ```
 
 The server will start on `http://localhost:8080`.
