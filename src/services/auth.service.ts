@@ -4,15 +4,15 @@ import * as UserRepo from "../repositories/user.repository";
 import { RegisterInput, LoginInput } from "../schemas/auth.schema";
 
 export const register = async (data: RegisterInput) => {
-  const user = await UserRepo.findUserByEmail(data.email)
-  if (user) throw new Error("Account has registered")
+  const user = await UserRepo.findUserByEmail(data.email);
+  if (user) throw new Error("Account has registered");
   const hashedPassword = await bcrypt.hash(data.password, 10);
   return UserRepo.createUser({ email: data.email, password: hashedPassword });
 };
 
 export const login = async (data: LoginInput) => {
-  const user = await UserRepo.findUserByEmail(data.email);  
-  
+  const user = await UserRepo.findUserByEmail(data.email);
+
   if (!user || !(await bcrypt.compare(data.password, user.password))) {
     throw new Error("Email atau password salah");
   }
